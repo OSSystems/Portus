@@ -5,19 +5,19 @@
 
 # Settings for the Portus mailer.
 email:
-  from: "portus@example.com"
-  name: "Portus"
-  reply_to: "no-reply@example.com"
+  from: <%= ENV["PORTUS_EMAIL_FROM"] or "portus@example.com" %>
+  name: <%= ENV["PORTUS_EMAIL_NAME"] or "Portus" %>
+  reply_to: <%= ENV["PORTUS_EMAIL_REPLY_TO"] or "no-reply@example.com" %>
 
   # If enabled, then SMTP will be used. Otherwise 'sendmail' will be used
   # (defaults to: /usr/sbin/sendmail -i -t).
   smtp:
-    enabled: false
-    address: "smtp.example.com"
-    port: 587,
-    user_name: "username@example.com"
-    password: "password"
-    domain: "example.com"
+    enabled: <%= ENV["PORTUS_EMAIL_SMTP_ENABLED"] or 'false' %>
+    address: <%= ENV["PORTUS_EMAIL_SMTP_ADDRESS"] or "smtp.example.com" %>
+    port: <%= ENV["PORTUS_EMAIL_SMTP_PORT"] or '587' %>
+    user_name: <%= ENV["PORTUS_EMAIL_SMTP_USER_NAME"] or "username@example.com" %>
+    password: <%= ENV["PORTUS_EMAIL_SMTP_PASSWORD"] or "password" %>
+    domain: <%= ENV["PORTUS_EMAIL_SMTP_DOMAIN"] or "example.com" %>
 
 # If enabled, then the profile picture will be picked from the Gravatar
 # associated with each user. See: https://en.gravatar.com/
@@ -35,7 +35,7 @@ gravatar:
 # Also, you can read more in our documentation here:
 # http://port.us.org/features/removing_images.html
 delete:
-  enabled: false
+  enabled: <%= ENV["PORTUS_DELETE_ENABLE"] or 'false' %>
 
 # LDAP support. If enabled, then only users of the specified LDAP server will
 # be able to use Portus. Take a look at the documentation of LDAP support in our
@@ -172,7 +172,7 @@ oauth:
 #   rake portus:make_admin[USERNAME]
 # in order to set the admin user
 first_user_admin:
-  enabled: true
+  enabled: <%= ENV["PORTUS_FIRST_USER_ADMIN_ENABLE"] or 'true' %>
 
 # If enabled, then users can signup with the signup form. Otherwise, the admin
 # is responsible of creating new users by either:
@@ -181,7 +181,7 @@ first_user_admin:
 # This is ignored if LDAP is enabled. Read more about this here:
 # http://port.us.org/features/disabling_signup.html
 signup:
-  enabled: true
+  enabled: <%= ENV["PORTUS_SIGNUP_ENABLE"] or 'true' %>
 
 # By default require ssl to be enabled when running on production
 check_ssl_usage:
@@ -200,7 +200,7 @@ registry:
   #
   # See: https://github.com/SUSE/Portus/issues/510
   jwt_expiration_time:
-    value: 5
+    value: <%= ENV["PORTUS_JWT_EXPIRATION_TIME_VALUE"] or '5' %>
 
   # Set the pagination value for API calls that fetch data from the
   # registry. You can read more about pagination in the registry here:
@@ -220,7 +220,7 @@ registry:
 
 # The FQDN of the machine where Portus is being deployed.
 machine_fqdn:
-  value: "portus.test.lan"
+  value: <%= ENV["PORTUS_MACHINE_FQDN_VALUE"] or 'portus.test.lan' %>
 
 # Allow users to have different display names on the web site. This will
 # **not** be the username used by `docker login`. It defaults to false because

@@ -10,6 +10,8 @@ if Rails.env.test? || Rails.env.development? || ENV["INCLUDE_ASSETS_GROUP"] == "
 end
 Bundler.require(*bundler_groups)
 
+require File.expand_path("../../lib/cconfig_with_erb.rb", __FILE__)
+
 module Portus
   # Application implements the Rails application base for Portus.
   class Application < Rails::Application

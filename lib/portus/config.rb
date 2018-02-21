@@ -12,7 +12,7 @@ module Portus
     # Returns a hash with the app configuration contained in it.
     def fetch
       cfg = {}
-      cfg = YAML.load_file(@default) if File.file?(@default)
+      cfg = YAML.load( ERB.new( File.read( @default ) ).result ) if File.file?(@default)
 
       local = {}
       if File.file?(@local)

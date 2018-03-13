@@ -1,4 +1,6 @@
 .git*
+.dockerignore
+Dockerfile
 tmp
 vagrant
 packaging

@@ -31,6 +31,8 @@ gem "webpack-rails"
 
 gem "rack-cors", "~> 1.0.1"
 
+gem 'tzinfo-data'
+
 # Supported DBs
 gem "mysql2", "= 0.4.10", group: :db
 gem "pg", "~> 0.20.0", group: :db
